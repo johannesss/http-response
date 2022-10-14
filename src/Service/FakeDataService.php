@@ -25,6 +25,9 @@ class FakeDataService
         'randomKey',
         'shuffle',
         'image',
+        'rgbColorAsArray',
+        'hslColorAsArray',
+        'creditCardDetails',
     ];
 
     const PATTERN = '/{{\s?([a-zA-Z]+)\((.*?)\)\s?}}/';
