@@ -386,17 +386,17 @@ by the faker formatter you would like to use. </p>
 <p>Some of the formatters accepts arguments, which can be provided as shown above.</p>
 <h2 id="examples">Examples</h2>
 <p>Here's an example GET request generating a JSON response with some fake data:</p>
-<pre><code>http://http-response.com/json?body={&quot;name&quot;:&quot;{{ name('female') }}&quot;,&quot;address&quot;:&quot;{{ address() }}&quot;,&quot;favorite_color&quot;:&quot;{{ randomElement(['green', 'red', 'black', 'blue']) }}&quot;}
+<pre><code>https://http-response.com/json?body={&quot;name&quot;:&quot;{{ name('female') }}&quot;,&quot;address&quot;:&quot;{{ address() }}&quot;,&quot;favorite_color&quot;:&quot;{{ randomElement(['green', 'red', 'black', 'blue']) }}&quot;}
 </code></pre>
 <p>Here's an example GET request generating an HTML response with some fake data:</p>
-<pre><code>http://http-response.com/?headers[content-type]=text/html&amp;body=&lt;h1&gt;Hello, my name is {{ name() }}&lt;/h1&gt;&lt;p&gt;I live on {{ streetName() }} in {{ city() }}
+<pre><code>https://http-response.com/?headers[content-type]=text/html&amp;body=&lt;h1&gt;Hello, my name is {{ name() }}&lt;/h1&gt;&lt;p&gt;I live on {{ streetName() }} in {{ city() }}
 </code></pre>
 <h2 id="locale">Locale</h2>
 <p>Faker makes it possible to change the locale for the generated data.</p>
 <p>You can set the locale by providing the parameter <code>fake_data_locale</code> and setting the value to the
 locale you'd like to use.</p>
 <p>Example GET request generating a Swedish address:</p>
-<pre><code>http://http-response.com/json?body={&quot;address&quot;:&quot;{{ address() }}&quot;}&amp;fake_data_locale=sv_SE
+<pre><code>https://http-response.com/json?body={&quot;address&quot;:&quot;{{ address() }}&quot;}&amp;fake_data_locale=sv_SE
 </code></pre>
 <p>Example POST payload generating a Swedish address:</p>
 <pre><code>{
@@ -414,7 +414,7 @@ This is the default when generating data.</p>
 <p>If you'd like to get the same data generated on subsequent requests, you can provide the parameter
 <code>fake_data_persist</code> and set the value to true.</p>
 <p>Example GET request generating the same address on every request:</p>
-<pre><code>http://http-response.com/json?body={&quot;address&quot;:&quot;{{ address() }}&quot;}&amp;fake_data_persist=true
+<pre><code>https://http-response.com/json?body={&quot;address&quot;:&quot;{{ address() }}&quot;}&amp;fake_data_persist=true
 </code></pre>
 <p>Example POST payload generating the same address on every request:</p>
 <pre><code>{
