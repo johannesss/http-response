@@ -1,0 +1,13 @@
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+
+nav:
+    - 'index.md'
+    - 'getting-started.md'
+    - 'dummy-data.md'
+    - 'repeating-data.md'
+
+site_name: http-response

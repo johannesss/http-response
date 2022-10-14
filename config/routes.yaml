@@ -1,0 +1,9 @@
+handle:
+  path: /
+  controller: App\Controller\ResponseController::handle
+  methods: GET|POST
+
+json:
+  path: /json
+  controller: App\Controller\ResponseController::jsonResponse
+  methods: GET|POST
