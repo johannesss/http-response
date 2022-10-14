@@ -286,21 +286,23 @@
 This is done by including the special property <code>__repeat</code> on the list items you'd like to repeat.</p>
 <p>Let me show you by using an example payload:</p>
 <pre><code>{
-    &quot;users&quot;: [
-        {
-            &quot;name&quot;: &quot;{{ name() }}&quot;,
-            &quot;age&quot;: &quot;{{ numberBetween(18, 85) }}&quot;,
-            &quot;uuid&quot;: &quot;{{ uuid() }}&quot;,
-            &quot;uploads&quot;: [
-                {
-                    &quot;filename&quot;: &quot;{{ word }}.png&quot;,
-                    &quot;url&quot;: &quot;{{ imageUrl(640, 480, 'animals', true) }}&quot;,
-                    &quot;__repeat&quot;: 5
-                }
-            ],
-            &quot;__repeat&quot;: 5
-        }
-    ]
+    &quot;body&quot;: {
+        &quot;users&quot;: [
+            {
+                &quot;name&quot;: &quot;{{ name() }}&quot;,
+                &quot;age&quot;: &quot;{{ numberBetween(18, 85) }}&quot;,
+                &quot;uuid&quot;: &quot;{{ uuid() }}&quot;,
+                &quot;uploads&quot;: [
+                    {
+                        &quot;filename&quot;: &quot;{{ word() }}.png&quot;,
+                        &quot;url&quot;: &quot;{{ imageUrl(640, 480, 'animals', true) }}&quot;,
+                        &quot;__repeat&quot;: 5
+                    }
+                ],
+                &quot;__repeat&quot;: 5
+            }
+        ]
+    }
 }
 </code></pre>
 <p>This payload will generate a list of 5 users with 5 uploads each.<br />
