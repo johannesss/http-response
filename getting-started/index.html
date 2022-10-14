@@ -444,42 +444,42 @@
 </table>
 <h2 id="simple-example">Simple example</h2>
 <p>In this example we will generate the following HTTP response using GET and POST requests.</p>
-<pre><code>HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    &quot;hello&quot;: &quot;world&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>HTTP/1.1 200 OK
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Content-Type: application/json
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>{
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    &quot;hello&quot;: &quot;world&quot;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>}
+</code></pre></div>
 <h3 id="using-a-get-request">Using a GET request</h3>
-<pre><code>https://www.http-response.com/?status_code=200&amp;headers[content-type]=application/json&amp;body={"hello":"world"}
-</code></pre>
+<div class="highlight"><pre><span></span><code>https://www.http-response.com/?status_code=200&amp;headers[content-type]=application/json&amp;body={&quot;hello&quot;:&quot;world&quot;}
+</code></pre></div>
 <p><a href="https://www.http-response.com/?status_code=200&amp;headers[content-type]=application/json&amp;body={&quot;hello&quot;:&quot;world&quot;}">Open as link</a></p>
 <h3 id="using-a-post-request">Using a POST request</h3>
 <p>To create the response using a POST request, the JSON payload looks like this.</p>
-<pre><code>{
-    &quot;status_code&quot;: 200,
-    &quot;headers&quot;: {
-        &quot;content-type&quot;: &quot;application/json&quot;
-    },
-    &quot;body&quot;: {
-        &quot;hello&quot;: &quot;world&quot;
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="nt">&quot;content-type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"></span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="nt">&quot;hello&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;world&quot;</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <h3 id="endpoint-for-json-responses">Endpoint for JSON responses</h3>
 <p>As JSON responses are such a common usecase, there's an endpoint that takes care of setting the
 status code to 200 (overridable) and content-type header to application/json.</p>
-<p><strong>GET</strong></p>
-<pre><code>https://www.http-response.com/json?body={&quot;hello&quot;:&quot;world&quot;}
-</code></pre>
-<p><strong>POST</strong></p>
-<pre><code>{
-    &quot;body&quot;: {
-        &quot;hello&quot;: &quot;world&quot;
-    }
-}
-</code></pre>
+<p><strong>GET</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>https://www.http-response.com/json?body={&quot;hello&quot;:&quot;world&quot;}
+</code></pre></div></p>
+<p><strong>POST</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="nt">&quot;hello&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;world&quot;</span><span class="w"></span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
 
 
 
