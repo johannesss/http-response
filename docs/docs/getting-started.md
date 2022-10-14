@@ -1,7 +1,7 @@
 # Getting started
 
 ## Base URL
-http://http-response.com
+https://www.http-response.com
 
 ## Parameters
 
@@ -25,9 +25,9 @@ Content-Type: application/json
 ```
 
 ### Using a GET request
-    http://http-response.com/?status_code=200&headers[content-type]=application/json&body={"hello":"world"}
+    https://www.http-response.com/?status_code=200&headers[content-type]=application/json&body={"hello":"world"}
 
-[Open as link](http://http-response.com/?status_code=200&headers[content-type]=application/json&body={"hello":"world"})
+[Open as link](https://www.http-response.com/?status_code=200&headers[content-type]=application/json&body={"hello":"world"})
 
 ### Using a POST request
 
@@ -52,7 +52,7 @@ status code to 200 (overridable) and content-type header to application/json.
 
 **GET**
 ```
-http://http-response.com/json?body={"hello":"world"}
+https://www.http-response.com/json?body={"hello":"world"}
 ```
 
 **POST**

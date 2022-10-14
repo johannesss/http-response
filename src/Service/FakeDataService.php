@@ -112,7 +112,6 @@ class FakeDataService
             } catch (MethodNotSupportedException $e) {
                 return $fullMatch;
             } catch (Exception $e) {
-                dd($e->getMessage());
                 return $fullMatch;
             }
         }, $payload->body);

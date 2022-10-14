@@ -58,8 +58,14 @@ class ResponseController extends AbstractController
 
         $pipeline = $this->buildPipeline($logger);
 
+        $input = collect($input)
+            ->except([
+                ResponseValues::KEY_HEADERS,
+            ])
+            ->toArray();
+
         $response = $pipeline->process(
-            new ResponseValues(array_merge($input, $responseValues))
+            new ResponseValues(array_merge($responseValues, $input))
         );
 
         // $response->prepare($request);

@@ -31,12 +31,12 @@ Some of the formatters accepts arguments, which can be provided as shown above.
 Here's an example GET request generating a JSON response with some fake data:
 
 ```
-http://http-response.com/json?body={"name":"{{ name('female') }}","address":"{{ address() }}","favorite_color":"{{ randomElement(['green', 'red', 'black', 'blue']) }}"}
+https://www.http-response.com/json?body={"name":"{{ name('female') }}","address":"{{ address() }}","favorite_color":"{{ randomElement(['green', 'red', 'black', 'blue']) }}"}
 ```
 
 Here's an example GET request generating an HTML response with some fake data:
 ```
-http://http-response.com/?headers[content-type]=text/html&body=<h1>Hello, my name is {{ name() }}</h1><p>I live on {{ streetName() }} in {{ city() }}
+https://www.http-response.com/?headers[content-type]=text/html&body=<h1>Hello, my name is {{ name() }}</h1><p>I live on {{ streetName() }} in {{ city() }}
 ```
 
 ## Locale
@@ -48,7 +48,7 @@ locale you'd like to use.
 
 Example GET request generating a Swedish address:
 ```
-http://http-response.com/json?body={"address":"{{ address() }}"}&fake_data_locale=sv_SE
+https://www.http-response.com/json?body={"address":"{{ address() }}"}&fake_data_locale=sv_SE
 ```
  
 Example POST payload generating a Swedish address:
@@ -74,7 +74,7 @@ If you'd like to get the same data generated on subsequent requests, you can pro
 
 Example GET request generating the same address on every request:
 ```
-http://http-response.com/json?body={"address":"{{ address() }}"}&fake_data_persist=true
+https://www.http-response.com/json?body={"address":"{{ address() }}"}&fake_data_persist=true
 ```
 
 Example POST payload generating the same address on every request:

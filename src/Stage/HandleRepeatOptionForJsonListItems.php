@@ -56,9 +56,15 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
 
                     $subKey = $subIterator->key();
 
+                    $repeat = $this->limit(50, $item[self::KEY_REPEAT]);
+                    $repeat = $repeat < 0 ? 1 : $repeat;
+
                     $value = $subIterator->offsetGet($subKey);
+                    // delete the item we're repeating to make it easier
+                    // when adding repeat items
+                    unset($value[$key]);
                     $value = array_merge(
-                        $value, array_fill(0, $item[self::KEY_REPEAT] - 1, $item)
+                        $value, array_fill(0, $repeat, $item)
                     );
 
                     $subIterator->offsetSet(
@@ -73,6 +79,11 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
         }
 
         return $iterator->getArrayCopy();
+    }
+
+    protected function limit(int $value, int $max)
+    {
+        return $value > $max ? $max : $value;
     }
 
     protected function unsetKeys(&$array, array $keys)
