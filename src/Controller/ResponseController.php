@@ -26,6 +26,10 @@ class ResponseController extends AbstractController
                 break;
         }
 
+        if (count($input) === 0) {
+            return $this->redirect('https://johannesss.github.io/http-response/');
+        }
+
         $pipeline = $this->buildPipeline($logger);
 
         $response = $pipeline->process(
