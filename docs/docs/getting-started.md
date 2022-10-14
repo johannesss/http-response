@@ -33,7 +33,7 @@ Content-Type: application/json
 
 To create the response using a POST request, the JSON payload looks like this.
 
-```
+```json
 {
     "status_code": 200,
     "headers": {
@@ -56,7 +56,7 @@ https://www.http-response.com/json?body={"hello":"world"}
 ```
 
 **POST**
-```
+```json
 {
     "body": {
         "hello": "world"

@@ -7,7 +7,7 @@ This is done by including the special property ```__repeat``` on the list items 
 
 Let me show you by using an example payload:
 
-```
+```json
 {
     "body": {
         "users": [

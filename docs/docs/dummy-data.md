@@ -52,7 +52,7 @@ https://www.http-response.com/json?body={"address":"{{ address() }}"}&fake_data_
 ```
  
 Example POST payload generating a Swedish address:
-```
+```json
 {
     "body": {
         "address": "{{ address() }}"
@@ -78,7 +78,7 @@ https://www.http-response.com/json?body={"address":"{{ address() }}"}&fake_data_
 ```
 
 Example POST payload generating the same address on every request:
-```
+```json
 {
     "body": {
         "address": "{{ address() }}"

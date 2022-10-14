@@ -285,26 +285,26 @@
 <p>http-response makes it possible to repeat list items in JSON responses.
 This is done by including the special property <code>__repeat</code> on the list items you'd like to repeat.</p>
 <p>Let me show you by using an example payload:</p>
-<pre><code>{
-    &quot;body&quot;: {
-        &quot;users&quot;: [
-            {
-                &quot;name&quot;: &quot;{{ name() }}&quot;,
-                &quot;age&quot;: &quot;{{ numberBetween(18, 85) }}&quot;,
-                &quot;uuid&quot;: &quot;{{ uuid() }}&quot;,
-                &quot;uploads&quot;: [
-                    {
-                        &quot;filename&quot;: &quot;{{ word() }}.png&quot;,
-                        &quot;url&quot;: &quot;{{ imageUrl(640, 480, 'animals', true) }}&quot;,
-                        &quot;__repeat&quot;: 5
-                    }
-                ],
-                &quot;__repeat&quot;: 5
-            }
-        ]
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="nt">&quot;users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">            </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ name() }}&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">                </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ numberBetween(18, 85) }}&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">                </span><span class="nt">&quot;uuid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ uuid() }}&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">                </span><span class="nt">&quot;uploads&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">                    </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">                        </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ word() }}.png&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">                        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ imageUrl(640, 480, &#39;animals&#39;, true) }}&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">                        </span><span class="nt">&quot;__repeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">                </span><span class="p">],</span><span class="w"></span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                </span><span class="nt">&quot;__repeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">            </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="p">]</span><span class="w"></span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <p>This payload will generate a list of 5 users with 5 uploads each.<br />
 Each with its own fake data generated.</p>
 <p><a href="https://www.http-response.com/json?body=%7B%22users%22%3A%5B%7B%22name%22%3A%22%7B%7Bname%28%29%7D%7D%22%2C%22age%22%3A%22%7B%7BnumberBetween%2818%2C85%29%7D%7D%22%2C%22uuid%22%3A%22%7B%7Buuid%28%29%7D%7D%22%2C%22uploads%22%3A%5B%7B%22filename%22%3A%22%7B%7Bword%28%29%7D%7D.png%22%2C%22url%22%3A%22%7B%7BimageUrl%28640%2C480%2C%27animals%27%2Ctrue%29%7D%7D%22%2C%22__repeat%22%3A5%7D%5D%2C%22__repeat%22%3A5%7D%5D%7D">Test it in the browser</a></p>
