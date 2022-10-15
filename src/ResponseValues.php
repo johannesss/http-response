@@ -12,7 +12,7 @@ class ResponseValues
     public const KEY_BODY                 = 'body';
     public const KEY_FAKE_DATA_LOCALE     = 'fake_data_locale';
     public const KEY_FAKE_DATA_PERSIST    = 'fake_data_persist';
-    public const RESPONSE_BODY_MAX_LENGTH = 2000;
+    public const RESPONSE_BODY_MAX_LENGTH = 10000;
 
     public $statusCode = Response::HTTP_OK;
 

@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ResponseController extends AbstractController
 {
-    protected const REQUEST_INPUT_MAX_LENGTH = 2000;
+    protected const REQUEST_INPUT_MAX_LENGTH = 10000;
 
     public function handle(
         Request $request,
