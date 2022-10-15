@@ -32,4 +32,4 @@ Let me show you by using an example payload:
 This payload will generate a list of 5 users with 5 uploads each.  
 Each with its own fake data generated.
 
-[Test it in the browser](https://www.http-response.com/json?body=%7B%22body%22%3A%7B%22users%22%3A%5B%7B%22name%22%3A%22%7B%7Bname%28%29%7D%7D%22%2C%22age%22%3A%22%7B%7BnumberBetween%2818%2C85%29%7D%7D%22%2C%22uuid%22%3A%22%7B%7Buuid%28%29%7D%7D%22%2C%22uploads%22%3A%5B%7B%22filename%22%3A%22%7B%7Bword%28%29%7D%7D.%7B%7BfileExtension%28%29%7D%7D%22%2C%22mime_type%22%3A%22%7B%7BmimeType%28%29%7D%7D%22%2C%22__repeat%22%3A5%7D%5D%2C%22__repeat%22%3A5%7D%5D%7D%7D)
+[Test it in the browser](https://www.http-response.com/json?body=%7B%22users%22%3A%5B%7B%22name%22%3A%22%7B%7Bname%28%29%7D%7D%22%2C%22age%22%3A%22%7B%7BnumberBetween%2818%2C85%29%7D%7D%22%2C%22uuid%22%3A%22%7B%7Buuid%28%29%7D%7D%22%2C%22uploads%22%3A%5B%7B%22filename%22%3A%22%7B%7Bword%28%29%7D%7D.%7B%7BfileExtension%28%29%7D%7D%22%2C%22mime_type%22%3A%22%7B%7BmimeType%28%29%7D%7D%22%2C%22__repeat%22%3A5%7D%5D%2C%22__repeat%22%3A5%7D%5D%7D)
