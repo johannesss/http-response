@@ -8,16 +8,6 @@ use League\Pipeline\StageInterface;
 
 class GenerateFakeData implements StageInterface
 {
-    public const PREFIX = '__faker';
-
-    protected $faker;
-
-    protected $logger;
-
-    protected $blacklistedFakerMethods = [
-        'image',
-    ];
-
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
