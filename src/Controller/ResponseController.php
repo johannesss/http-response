@@ -7,15 +7,19 @@ use Psr\Log\LoggerInterface;
 use League\Pipeline\Pipeline;
 use App\Stage\FinalizeResponse;
 use App\Stage\GenerateFakeData;
+use App\Exception\ResponseBodyTooLarge;
 use Symfony\Component\RateLimiter\RateLimit;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Stage\HandleRepeatOptionForJsonListItems;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ResponseController extends AbstractController
 {
+    protected const REQUEST_INPUT_MAX_LENGTH = 2000;
+
     public function handle(
         Request $request,
         LoggerInterface $logger,
@@ -38,9 +42,13 @@ class ResponseController extends AbstractController
 
         $pipeline = $this->buildPipeline($logger);
 
-        $response = $pipeline->process(
-            new ResponseValues($input)
-        );
+        try {
+            $response = $pipeline->process(
+                new ResponseValues($input)
+            );
+        } catch (ResponseBodyTooLarge $e) {
+            throw new BadRequestHttpException('Generated response body too large');
+        }
 
         return $response->send();
     }
@@ -74,9 +82,13 @@ class ResponseController extends AbstractController
             ])
             ->toArray();
 
-        $response = $pipeline->process(
-            new ResponseValues(array_merge($responseValues, $input))
-        );
+        try {
+            $response = $pipeline->process(
+                new ResponseValues(array_merge($responseValues, $input))
+            );
+        } catch (ResponseBodyTooLarge $e) {
+            throw new BadRequestHttpException('Generated response body too large');
+        }
 
         return $response->send();
     }
@@ -100,6 +112,10 @@ class ResponseController extends AbstractController
             case Request::METHOD_GET:
                 $input = $request->query->all();
                 break;
+        }
+
+        if (strlen(json_encode($input)) > self::REQUEST_INPUT_MAX_LENGTH) {
+            throw new BadRequestHttpException('Request input too large');
         }
 
         return $input;

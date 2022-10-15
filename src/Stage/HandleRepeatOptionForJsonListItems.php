@@ -2,9 +2,11 @@
 
 namespace App\Stage;
 
+use App\ResponseValues;
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
 use League\Pipeline\StageInterface;
+use App\Exception\ResponseBodyTooLarge;
 
 class HandleRepeatOptionForJsonListItems implements StageInterface
 {
@@ -14,7 +16,7 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
 
     protected $body;
 
-    protected $structures = [];
+    protected $lengths = [];
 
     public function __invoke($payload)
     {
@@ -30,7 +32,7 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
             return $payload;
         }
 
-        $body = $this->repeatItems($arrBody);
+        $body = $this->repeatItems($arrBody, $payload);
 
         $this->unsetKeys($body, [self::KEY_REPEAT]);
 
@@ -39,7 +41,7 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
         return $payload;
     }
 
-    protected function repeatItems(array $body)
+    protected function repeatItems(array $body, $payload)
     {
         $iterator = new RecursiveIteratorIterator(
             new RecursiveArrayIterator($body),
@@ -64,6 +66,20 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
                 $repeat = $repeat < 0 ? 1 : $repeat;
 
                 $value = $subIterator->offsetGet($subKey);
+
+                if ($subDepth === $currentDepth) {
+                    $this->unsetKeys($value, [self::KEY_REPEAT]);
+                    if ($subDepth === 0) {
+                        $length = (strlen(json_encode($value)) * $repeat) + strlen($subKey) + 1;
+                    } else {
+                        $length = strlen(json_encode($value)) * $repeat;
+                    }
+
+                    if ($length > ResponseValues::RESPONSE_BODY_MAX_LENGTH) {
+                        throw new ResponseBodyTooLarge;
+                    }
+                }
+
                 // delete the item we're repeating to make it easier
                 // when adding repeat items
                 unset($value[$key]);

@@ -7,6 +7,7 @@ use Faker\Factory;
 use App\ResponseValues;
 use PhpParser\ParserFactory;
 use Psr\Log\LoggerInterface;
+use App\Exception\ResponseBodyTooLarge;
 
 class MethodNotSupportedException extends Exception
 {
@@ -25,6 +26,7 @@ class FakeDataService
         'randomKey',
         'shuffle',
         'image',
+        'imageUrl',
         'rgbColorAsArray',
         'hslColorAsArray',
         'creditCardDetails',
@@ -85,7 +87,9 @@ class FakeDataService
 
     public function generate(ResponseValues $payload)
     {
-        return preg_replace_callback(self::PATTERN, function ($matches) use ($payload) {
+        $generatedLength = strlen($payload->body);
+
+        return preg_replace_callback(self::PATTERN, function ($matches) use ($payload, &$generatedLength) {
             [$fullMatch, $method, $argsString] = $matches;
 
             try {
@@ -101,20 +105,20 @@ class FakeDataService
                     [$this->generator, $method], $args
                 );
 
-                if (is_array($data)) {
-                    return $fullMatch;
-                }
-
                 if ($payload->isJson() && is_string($data)) {
                     $data = json_encode($data); // convert line breaks to \r\n
                     $data = substr($data, 1, -1); // remove double "" created by json_encode as its already a string
                     $data = addcslashes($data, '"\\/'); // escape quotes in string
                 }
 
+                $generatedLength += (strlen($generatedLength) - strlen($fullMatch)) + strlen($data);
+
+                if ($generatedLength > ResponseValues::RESPONSE_BODY_MAX_LENGTH) {
+                    throw new ResponseBodyTooLarge;
+                }
+
                 return $data;
             } catch (MethodNotSupportedException $e) {
-                return $fullMatch;
-            } catch (Exception $e) {
                 return $fullMatch;
             }
         }, $payload->body);
