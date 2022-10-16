@@ -16,8 +16,6 @@ class FakeDataService
 {
     protected $generator;
 
-    protected $logger;
-
     protected $methodArgSettings = [];
 
     protected $notSupported = [
