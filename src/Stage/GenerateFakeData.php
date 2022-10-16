@@ -7,6 +7,9 @@ use League\Pipeline\StageInterface;
 
 class GenerateFakeData implements StageInterface
 {
+    /**
+     * @return mixed
+     */
     public function __invoke($payload)
     {
         if (!str_contains($payload->body, '{{')) {

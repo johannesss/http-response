@@ -15,6 +15,9 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
 
     protected $body;
 
+    /**
+     * @return mixed
+     */
     public function __invoke($payload)
     {
         $this->payload = $payload;

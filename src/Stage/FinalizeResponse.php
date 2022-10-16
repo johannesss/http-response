@@ -9,6 +9,9 @@ class FinalizeResponse implements StageInterface
 {
     protected $request;
 
+    /**
+     * @return mixed
+     */
     public function __invoke($payload)
     {
         $response = new Response;
