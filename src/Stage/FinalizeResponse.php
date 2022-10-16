@@ -7,8 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FinalizeResponse implements StageInterface
 {
-    protected $request;
-
     /**
      * @return mixed
      */
