@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ResponseTest extends WebTestCase
 {
-    public function testItRedirectsToTheProjectPageIfNoParams(): void
+    public function test_it_redirects_to_the_project_page_given_no_params(): void
     {
         $client = static::createClient();
 
