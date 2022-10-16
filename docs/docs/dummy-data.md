@@ -21,8 +21,7 @@ To generate a fake value, use the following syntax in the response body:
 {{ insertFakerFormatter('arg1', 'arg2') }}
 ```
 
-where ``insertFakerFormatter`` would be replaced by the
-by the faker formatter you would like to use. 
+where ``insertFakerFormatter`` would be replaced by the faker formatter you would like to use. 
 
 Some of the formatters accepts arguments, which can be provided as shown above.
 
