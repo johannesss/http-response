@@ -1,6 +1,6 @@
 # Fake data
 
-When creating a mock API response, being able to generate dummy data is very useful.
+When creating a mock API response, being able to generate fake data is very useful.
 
 This project uses [FakerPHP/Faker](https://fakerphp.github.io/) under the hood and makes it available
 to use in the response body.
