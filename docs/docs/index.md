@@ -10,3 +10,5 @@ Example use cases:
 - Mock API responses
 
 Generate responses either by using a GET request and defining the response through query string parameters, or by using a POST request and defining the response through a JSON payload.
+
+![javascript code snippet](assets/code.svg)
