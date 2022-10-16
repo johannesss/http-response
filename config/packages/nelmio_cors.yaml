@@ -1,0 +1,12 @@
+nelmio_cors:
+    defaults:
+        origin_regex: true
+        allow_origin: ['*']
+        allow_methods: ['GET', 'POST']
+        allow_headers: ['*']
+    paths:
+        '/*':
+            origin_regex: true
+            allow_origin: ['*']
+            allow_methods: ['GET', 'POST']
+            allow_headers: ['*']

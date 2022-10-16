@@ -43,7 +43,7 @@ class ResponseController extends AbstractController
             throw new BadRequestHttpException('Requested response body too large');
         }
 
-        return $response->send();
+        return $response;
     }
 
     public function jsonResponse(
@@ -81,7 +81,7 @@ class ResponseController extends AbstractController
             throw new BadRequestHttpException('Requested response body too large');
         }
 
-        return $response->send();
+        return $response;
     }
 
     protected function responseGenerator()
