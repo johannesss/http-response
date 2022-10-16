@@ -3,23 +3,18 @@
 namespace App\Controller;
 
 use App\ResponseValues;
+use App\ResponseGenerator;
 use Psr\Log\LoggerInterface;
-use League\Pipeline\Pipeline;
-use App\Stage\FinalizeResponse;
-use App\Stage\GenerateFakeData;
 use App\Exception\ResponseBodyTooLarge;
 use Symfony\Component\RateLimiter\RateLimit;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Stage\HandleRepeatOptionForJsonListItems;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ResponseController extends AbstractController
 {
-    protected const REQUEST_INPUT_MAX_LENGTH = 10000;
-
     public function handle(
         Request $request,
         LoggerInterface $logger,
@@ -40,14 +35,12 @@ class ResponseController extends AbstractController
             return $this->tooManyRequestsResponse($rateLimit);
         }
 
-        $pipeline = $this->buildPipeline($logger);
+        $responseGenerator = $this->responseGenerator();
 
         try {
-            $response = $pipeline->process(
-                new ResponseValues($input)
-            );
+            $response = $responseGenerator->generate($input);
         } catch (ResponseBodyTooLarge $e) {
-            throw new BadRequestHttpException('Generated response body too large');
+            throw new BadRequestHttpException('Requested response body too large');
         }
 
         return $response->send();
@@ -74,31 +67,28 @@ class ResponseController extends AbstractController
             ],
         ];
 
-        $pipeline = $this->buildPipeline($logger);
-
         $input = collect($this->getInput($request))
             ->except([
                 ResponseValues::KEY_HEADERS,
             ])
             ->toArray();
 
+        $responseGenerator = $this->responseGenerator();
+
         try {
-            $response = $pipeline->process(
-                new ResponseValues(array_merge($responseValues, $input))
-            );
+            $response = $responseGenerator->generate(array_merge($responseValues, $input));
         } catch (ResponseBodyTooLarge $e) {
-            throw new BadRequestHttpException('Generated response body too large');
+            throw new BadRequestHttpException('Requested response body too large');
         }
 
         return $response->send();
     }
 
-    protected function buildPipeline(LoggerInterface $logger)
+    protected function responseGenerator()
     {
-        return (new Pipeline)
-            ->pipe(new HandleRepeatOptionForJsonListItems)
-            ->pipe(new GenerateFakeData($logger))
-            ->pipe(new FinalizeResponse);
+        return new ResponseGenerator(
+            $this->getParameter('app.response_body_max_length')
+        );
     }
 
     protected function getInput(Request $request)
@@ -114,7 +104,7 @@ class ResponseController extends AbstractController
                 break;
         }
 
-        if (strlen(json_encode($input)) > self::REQUEST_INPUT_MAX_LENGTH) {
+        if (strlen(json_encode($input)) > $this->getParameter('app.request_input_max_length')) {
             throw new BadRequestHttpException('Request input too large');
         }
 

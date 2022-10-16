@@ -2,7 +2,6 @@
 
 namespace App\Stage;
 
-use App\ResponseValues;
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
 use League\Pipeline\StageInterface;
@@ -12,7 +11,7 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
 {
     public const KEY_REPEAT = '__repeat';
 
-    protected const MAX_REPEAT = 50;
+    protected const MAX_REPEAT = 50000;
 
     protected $body;
 
@@ -34,7 +33,13 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
 
         $this->unsetKeys($body, [self::KEY_REPEAT]);
 
-        $payload->body = json_encode($body);
+        $body = json_encode($body);
+
+        if (strlen($body) > $payload->responseBodyMaxLength) {
+            throw new ResponseBodyTooLarge;
+        }
+
+        $payload->body = $body;
 
         return $payload;
     }
@@ -45,6 +50,9 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
             new RecursiveArrayIterator($body),
             RecursiveIteratorIterator::CHILD_FIRST
         );
+
+        $generatedLength = 0;
+        $firstIteration  = true;
 
         foreach ($iterator as $key => $value) {
             if (!is_array($value) || is_array($value) && !array_key_exists(self::KEY_REPEAT, $value)) {
@@ -60,30 +68,35 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
 
                 $subKey = $subIterator->key();
 
-                $repeat = $this->limit(self::MAX_REPEAT, $item[self::KEY_REPEAT]);
+                $repeat = $this->limit($item[self::KEY_REPEAT], self::MAX_REPEAT);
                 $repeat = $repeat < 0 ? 1 : $repeat;
 
                 $value = $subIterator->offsetGet($subKey);
 
-                if ($subDepth === $currentDepth) {
+                if ($subDepth === $currentDepth && $subDepth === 0) {
                     $this->unsetKeys($value, [self::KEY_REPEAT]);
-                    if ($subDepth === 0) {
-                        $length = (strlen(json_encode($value)) * $repeat) + strlen($subKey) + 1;
-                    } else {
-                        $length = strlen(json_encode($value)) * $repeat;
+
+                    $reservedCharsLength = 1;
+
+                    if (!$firstIteration) {
+                        $reservedCharsLength = 2;
                     }
 
-                    if ($length > ResponseValues::RESPONSE_BODY_MAX_LENGTH) {
+                    $generatedLength += (strlen(json_encode($value)) * $repeat) - ($repeat - 2) + strlen("\"$subKey\":[]") - $reservedCharsLength;
+
+                    if ($generatedLength > $payload->responseBodyMaxLength) {
                         throw new ResponseBodyTooLarge;
                     }
+
+                    $firstIteration = false;
                 }
 
-                // delete the item we're repeating to make it easier
-                // when adding repeat items
-                unset($value[$key]);
+                unset($value[$key]); // delete the original item we're repeating
                 $value = array_merge(
                     $value, array_fill(0, $repeat, $item)
                 );
+
+                $this->unsetKeys($value, [self::KEY_REPEAT]);
 
                 $subIterator->offsetSet(
                     $subKey,
@@ -98,8 +111,12 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
         return $iterator->getArrayCopy();
     }
 
-    protected function limit(int $value, int $max)
+    protected function limit($value, int $max)
     {
+        if (!is_numeric($value)) {
+            $value = 1;
+        }
+
         return $value > $max ? $max : $value;
     }
 

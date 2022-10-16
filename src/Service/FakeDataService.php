@@ -6,7 +6,6 @@ use Exception;
 use Faker\Factory;
 use App\ResponseValues;
 use PhpParser\ParserFactory;
-use Psr\Log\LoggerInterface;
 use App\Exception\ResponseBodyTooLarge;
 
 class MethodNotSupportedException extends Exception
@@ -34,7 +33,7 @@ class FakeDataService
 
     const PATTERN = '/{{\s?([a-zA-Z]+)\((.*?)\)\s?}}/';
 
-    public function __construct(string $locale = null, bool $setSeed = false, LoggerInterface $logger)
+    public function __construct(string $locale = null, bool $setSeed = false)
     {
         $this->generator = Factory::create(
             $locale ?? Factory::DEFAULT_LOCALE
@@ -43,8 +42,6 @@ class FakeDataService
         if ($setSeed) {
             $this->generator->seed('seed-value');
         }
-
-        $this->logger = $logger;
 
         $this->methodArgSettings = [
             'realText'        => [
@@ -113,7 +110,7 @@ class FakeDataService
 
                 $generatedLength += (strlen($generatedLength) - strlen($fullMatch)) + strlen($data);
 
-                if ($generatedLength > ResponseValues::RESPONSE_BODY_MAX_LENGTH) {
+                if ($generatedLength > $payload->responseBodyMaxLength) {
                     throw new ResponseBodyTooLarge;
                 }
 

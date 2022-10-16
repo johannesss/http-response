@@ -7,12 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ResponseValues
 {
-    public const KEY_STATUS_CODE          = 'status_code';
-    public const KEY_HEADERS              = 'headers';
-    public const KEY_BODY                 = 'body';
-    public const KEY_FAKE_DATA_LOCALE     = 'fake_data_locale';
-    public const KEY_FAKE_DATA_PERSIST    = 'fake_data_persist';
-    public const RESPONSE_BODY_MAX_LENGTH = 10000;
+    public const KEY_STATUS_CODE       = 'status_code';
+    public const KEY_HEADERS           = 'headers';
+    public const KEY_BODY              = 'body';
+    public const KEY_FAKE_DATA_LOCALE  = 'fake_data_locale';
+    public const KEY_FAKE_DATA_PERSIST = 'fake_data_persist';
 
     public $statusCode = Response::HTTP_OK;
 
@@ -24,8 +23,12 @@ class ResponseValues
 
     public $fakeDataPersist = false;
 
-    public function __construct(array $values)
+    public $responseBodyMaxLength;
+
+    public function __construct(array $values, int $responseBodyMaxLength)
     {
+        $this->responseBodyMaxLength = $responseBodyMaxLength;
+
         if (array_key_exists(self::KEY_STATUS_CODE, $values)) {
             $this->statusCode = $values[self::KEY_STATUS_CODE];
         }
@@ -45,8 +48,6 @@ class ResponseValues
             }
 
             $this->body = $body;
-
-            $this->bodyLength = strlen($body);
         }
 
         if (array_key_exists(self::KEY_FAKE_DATA_LOCALE, $values)) {

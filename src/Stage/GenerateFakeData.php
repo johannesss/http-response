@@ -2,17 +2,11 @@
 
 namespace App\Stage;
 
-use Psr\Log\LoggerInterface;
 use App\Service\FakeDataService;
 use League\Pipeline\StageInterface;
 
 class GenerateFakeData implements StageInterface
 {
-    public function __construct(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
-
     public function __invoke($payload)
     {
         if (!str_contains($payload->body, '{{')) {
@@ -21,8 +15,7 @@ class GenerateFakeData implements StageInterface
 
         $fakeDataService = new FakeDataService(
             $payload->fakeDataLocale,
-            $payload->fakeDataPersist,
-            $this->logger
+            $payload->fakeDataPersist
         );
 
         $payload->body = $fakeDataService->generate($payload);
