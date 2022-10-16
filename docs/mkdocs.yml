@@ -7,7 +7,7 @@ theme:
 nav:
     - 'index.md'
     - 'getting-started.md'
-    - 'dummy-data.md'
+    - 'fake-data.md'
     - 'repeating-data.md'
 
 site_name: http-response

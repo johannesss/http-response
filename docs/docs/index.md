@@ -1,6 +1,12 @@
 # What is this?
 
-http-response is a free service that makes it possible to create HTTP responses "on the fly" either by using a GET request and defining the response through query string parameters, or you can use a POST request and define the response through a JSON payload.
+http-response is a free web API that makes it possible to generate HTTP responses.  
+It features fake data generation and repetition of list items.
 
-It also makes it possible to generate dummy data and to generate
-lists of data by repeating items.
+Example use cases:
+
+- Generate fake data while prototyping
+- Test that your application behaves correctly given a certain response
+- Mock API responses
+
+Generate responses either by using a GET request and defining the response through query string parameters, or by using a POST request and defining the response through a JSON payload.

@@ -1,4 +1,4 @@
-# Dummy data
+# Fake data
 
 When creating a mock API response, being able to generate dummy data is very useful.
 

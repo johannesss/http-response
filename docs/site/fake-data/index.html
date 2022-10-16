@@ -13,7 +13,7 @@
     
     
       
-        <title>Dummy data - http-response</title>
+        <title>Fake data - http-response</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dummy-data" class="md-skip">
+        <a href="#fake-data" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Dummy data
+              Fake data
             
           </span>
         </div>
@@ -225,12 +225,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Dummy data
+          Fake data
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Dummy data
+        Fake data
       </a>
       
         
@@ -368,7 +368,7 @@
                   
 
 
-<h1 id="dummy-data">Dummy data</h1>
+<h1 id="fake-data">Fake data</h1>
 <p>When creating a mock API response, being able to generate dummy data is very useful.</p>
 <p>This project uses <a href="https://fakerphp.github.io/">FakerPHP/Faker</a> under the hood and makes it available
 to use in the response body.</p>
@@ -381,8 +381,7 @@ generate a fake value. </p>
 <p>To generate a fake value, use the following syntax in the response body:  </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{{ insertFakerFormatter(&#39;arg1&#39;, &#39;arg2&#39;) }}
 </code></pre></div>
-<p>where <code>insertFakerFormatter</code> would be replaced by the
-by the faker formatter you would like to use. </p>
+<p>where <code>insertFakerFormatter</code> would be replaced by the faker formatter you would like to use. </p>
 <p>Some of the formatters accepts arguments, which can be provided as shown above.</p>
 <h2 id="examples">Examples</h2>
 <p>Here's an example GET request generating a JSON response with some fake data:</p>
