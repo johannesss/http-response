@@ -6,6 +6,7 @@
 parameters:
     app.response_body_max_length: 10000
     app.request_input_max_length: 10000
+    app.project_page_url: 'https://johannesss.github.io/http-response/'
 
 services:
     # default configuration for services in *this* file

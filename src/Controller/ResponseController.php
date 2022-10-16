@@ -23,7 +23,7 @@ class ResponseController extends AbstractController
         $input = $this->getInput($request);
 
         if (count($input) === 0) {
-            return $this->redirect('https://johannesss.github.io/http-response/');
+            return $this->redirect($this->getParameter('app.project_page_url'));
         }
 
         $rateLimit = $this->getRateLimit(
