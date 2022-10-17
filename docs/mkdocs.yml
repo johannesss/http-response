@@ -6,6 +6,9 @@ theme:
 
 extra_css: [assets/styles.css]
 
+repo_url: https://github.com/johannesss/http-response
+repo_name: johannesss/http-response
+
 nav:
     - 'index.md'
     - 'getting-started.md'
