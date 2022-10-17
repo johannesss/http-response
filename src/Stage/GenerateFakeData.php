@@ -23,16 +23,23 @@ class GenerateFakeData implements StageInterface
 
         $payload->body = $fakeDataService->generate($payload);
 
-        $body = json_decode($payload->body, true);
-        if ($payload->isJson() && $body !== null) {
-            array_walk_recursive($body, function (&$value) {
-                if (is_numeric($value)) {
-                    $value = intval($value);
-                }
-            });
-            $payload->body = json_encode($body);
+        if ($payload->isJson()) {
+            $payload->body = $this->convertNumericStringsToIntegers($payload->body);
         }
 
         return $payload;
+    }
+
+    protected function convertNumericStringsToIntegers(string $body)
+    {
+        $body = json_decode($body, true);
+
+        array_walk_recursive($body, function (&$value) {
+            if (is_numeric($value)) {
+                $value = intval($value);
+            }
+        });
+
+        return json_encode($body);
     }
 }
