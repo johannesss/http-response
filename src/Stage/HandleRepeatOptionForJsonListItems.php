@@ -11,7 +11,7 @@ class HandleRepeatOptionForJsonListItems implements StageInterface
 {
     public const KEY_REPEAT = '__repeat';
 
-    protected const MAX_REPEAT = 50000;
+    protected const MAX_REPEAT = 50;
 
     protected $body;
 
