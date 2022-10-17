@@ -11,4 +11,4 @@ Example use cases:
 
 Generate responses either by using a GET request and defining the response through query string parameters, or by using a POST request and defining the response through a JSON payload.
 
-![javascript code snippet](assets/code.svg)
+<script src="https://gist.github.com/johannesss/309d94f5cb54a87cd2b680188ef7f5e6.js"></script>

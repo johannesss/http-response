@@ -4,6 +4,8 @@ theme:
     scheme: slate
     primary: indigo
 
+extra_css: [assets/styles.css]
+
 nav:
     - 'index.md'
     - 'getting-started.md'
