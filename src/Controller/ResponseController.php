@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\ResponseValues;
 use App\ResponseGenerator;
-use Psr\Log\LoggerInterface;
 use App\Exception\ResponseBodyTooLarge;
 use Symfony\Component\RateLimiter\RateLimit;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +16,6 @@ class ResponseController extends AbstractController
 {
     public function handle(
         Request $request,
-        LoggerInterface $logger,
         RateLimiterFactory $anonymousApiLimiter
     ) {
         $input = $this->getInput($request);
@@ -48,7 +46,6 @@ class ResponseController extends AbstractController
 
     public function jsonResponse(
         Request $request,
-        LoggerInterface $logger,
         RateLimiterFactory $anonymousApiLimiter
     ) {
         $rateLimit = $this->getRateLimit(
