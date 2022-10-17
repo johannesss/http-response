@@ -7,7 +7,7 @@ use RecursiveIteratorIterator;
 use League\Pipeline\StageInterface;
 use App\Exception\ResponseBodyTooLarge;
 
-class HandleRepeatOptionForJsonListItems implements StageInterface
+class RepeatJsonListItems implements StageInterface
 {
     public const KEY_REPEAT = '__repeat';
 

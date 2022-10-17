@@ -5,7 +5,7 @@ namespace App;
 use League\Pipeline\Pipeline;
 use App\Stage\FinalizeResponse;
 use App\Stage\GenerateFakeData;
-use App\Stage\HandleRepeatOptionForJsonListItems;
+use App\Stage\RepeatJsonListItems;
 
 class ResponseGenerator
 {
@@ -21,7 +21,7 @@ class ResponseGenerator
         $responseValues = new ResponseValues($input, $this->responseBodyMaxLength);
 
         $pipeline = (new Pipeline)
-            ->pipe(new HandleRepeatOptionForJsonListItems)
+            ->pipe(new RepeatJsonListItems)
             ->pipe(new GenerateFakeData)
             ->pipe(new FinalizeResponse);
 
