@@ -1,6 +1,6 @@
 # What is this?
 
-http-response is a free web API that makes it possible to generate HTTP responses.  
+http-response is a free web API that generates HTTP responses.  
 It features fake data generation and repetition of list items.
 
 Example use cases:
