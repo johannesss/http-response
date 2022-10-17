@@ -2,15 +2,11 @@
 
 namespace App\Service;
 
-use Exception;
 use Faker\Factory;
 use App\ResponseValues;
 use PhpParser\ParserFactory;
 use App\Exception\ResponseBodyTooLarge;
-
-class MethodNotSupportedException extends Exception
-{
-}
+use App\Exception\FakeDataMethodNotSupported;
 
 class FakeDataService
 {
@@ -89,7 +85,7 @@ class FakeDataService
 
             try {
                 if (in_array($method, $this->notSupported)) {
-                    throw new MethodNotSupportedException();
+                    throw new FakeDataMethodNotSupported;
                 }
 
                 $args = $this->parseArgs($argsString);
@@ -113,7 +109,7 @@ class FakeDataService
                 }
 
                 return $data;
-            } catch (MethodNotSupportedException $e) {
+            } catch (FakeDataMethodNotSupported $e) {
                 return $fullMatch;
             }
         }, $payload->body);
