@@ -11,4 +11,11 @@ Example use cases:
 
 Generate responses either by using a GET request and defining the response through query string parameters, or by using a POST request and defining the response through a JSON payload.
 
-<script src="https://gist.github.com/johannesss/309d94f5cb54a87cd2b680188ef7f5e6.js"></script>
+Below is a little demo showcasing generation of fake data.
+
+<p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="oNdRLZX" data-user="johanneseriksson" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/johanneseriksson/pen/oNdRLZX">
+  http-response demo</a> by Johannes Eriksson (<a href="https://codepen.io/johanneseriksson">@johanneseriksson</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
