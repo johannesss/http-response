@@ -8,6 +8,7 @@ extra_css: [assets/styles.css]
 
 repo_url: https://github.com/johannesss/http-response
 repo_name: johannesss/http-response
+edit_uri: /johannesss/http-response/edit/main/docs/docs
 
 nav:
     - 'index.md'
