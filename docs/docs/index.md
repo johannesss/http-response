@@ -13,7 +13,7 @@ Generate responses either by using a GET request and defining the response throu
 
 Below is a little demo showcasing generation of fake data.
 
-<p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="oNdRLZX" data-user="johanneseriksson" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+<p class="codepen" data-height="750" data-default-tab="result" data-slug-hash="oNdRLZX" data-user="johanneseriksson" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
   <span>See the Pen <a href="https://codepen.io/johanneseriksson/pen/oNdRLZX">
   http-response demo</a> by Johannes Eriksson (<a href="https://codepen.io/johanneseriksson">@johanneseriksson</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
