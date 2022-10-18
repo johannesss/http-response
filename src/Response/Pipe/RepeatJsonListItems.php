@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Stage;
+namespace App\Response\Pipe;
 
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;

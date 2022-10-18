@@ -3,8 +3,8 @@
 namespace App\Service;
 
 use Faker\Factory;
-use App\ResponseValues;
 use PhpParser\ParserFactory;
+use App\Response\ResponseValues;
 use App\Exception\ResponseBodyTooLarge;
 use App\Exception\FakeDataMethodNotSupported;
 
@@ -99,7 +99,6 @@ class FakeDataService
                 if ($payload->isJson() && is_string($data)) {
                     $data = json_encode($data); // convert line breaks to \r\n
                     $data = substr($data, 1, -1); // remove double "" created by json_encode as its already a string
-                    $data = addcslashes($data, '"\\/'); // escape quotes in string
                 }
 
                 $generatedLength += (strlen($generatedLength) - strlen($fullMatch)) + strlen($data);

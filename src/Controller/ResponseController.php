@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\ResponseValues;
-use App\ResponseGenerator;
+use App\Response\ResponseValues;
+use App\Response\ResponseGenerator;
 use App\Exception\ResponseBodyTooLarge;
 use Symfony\Component\RateLimiter\RateLimit;
 use Symfony\Component\HttpFoundation\Request;

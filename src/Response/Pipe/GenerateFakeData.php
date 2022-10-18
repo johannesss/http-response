@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Stage;
+namespace App\Response\Pipe;
 
 use App\Service\FakeDataService;
 use League\Pipeline\StageInterface;

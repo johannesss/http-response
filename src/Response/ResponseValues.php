@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Response;
 
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;

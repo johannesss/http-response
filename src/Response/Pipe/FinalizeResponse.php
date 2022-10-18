@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Stage;
+namespace App\Response\Pipe;
 
 use League\Pipeline\StageInterface;
 use Symfony\Component\HttpFoundation\Response;

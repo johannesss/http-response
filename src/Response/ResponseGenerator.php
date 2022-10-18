@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Response;
 
 use League\Pipeline\Pipeline;
-use App\Stage\FinalizeResponse;
-use App\Stage\GenerateFakeData;
-use App\Stage\RepeatJsonListItems;
+use App\Response\Pipe\FinalizeResponse;
+use App\Response\Pipe\GenerateFakeData;
+use App\Response\Pipe\RepeatJsonListItems;
 
 class ResponseGenerator
 {
